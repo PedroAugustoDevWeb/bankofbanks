@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" th:href="@{/css/cadastro.css}"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cadastro</title>
+</head>
+<body>
+    <form action="/cadastro" method="post">
+        <div>
+            <h1>bank of banks</h1>
+            <p>nome completo</p>
+            <input type="text" name="nomeCompleto" placeholder="nome completo">
+            <p>cpf</p>
+            <input type="text" name="cpf" placeholder="cpf">
+            <p>email</p>
+            <input type="text" name="email" placeholder="email">
+            <p>password</p>    
+            <input type="password" name="password" placeholder="password">
+            <p>confirmar password</p>
+            <input type="password" name="confirmarPassword" placeholder="confirmar password">
+            <button type="submit">criar conta !</button>
+        </div>
+
+    </form>
+</body>
+</html>
