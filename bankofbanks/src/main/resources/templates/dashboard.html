@@ -1,11 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>dashboard</title>
 </head>
 <body>
-    
+    <nav class="navbar">
+        <a href="#" class="logo">BANK OF BANKS</a>
+
+        <a href="#" class="login-btn"> Olá. <span th:text="${user.primeiro_nome}">?</span></a>
+
+        <!-- Ícone do menu (Mobile) -->
+        <div class="menu-icon">☰</div>
+    </nav>
+
+    <div class="saldo-container">
+        <p class="saldo-label">Seu saldo</p>
+        <p class="saldo-valor" id="saldo">R$ ••••</p>
+        <button class="toggle-saldo" onclick="toggleSaldo()">Mostrar saldo</button>
+    </div>
+
+    <script>
+        let saldoVisivel = false;
+        function toggleSaldo() {
+            const saldo = document.getElementById("saldo");
+            const botao = document.querySelector(".toggle-saldo");
+
+            if (saldoVisivel) {
+                saldo.textContent = "R$ ••••";
+                botao.textContent = "Mostrar saldo";
+            } else {
+                saldo.textContent = "${user.balance}"; // Aqui pode ser um valor dinâmico vindo do backend
+                botao.textContent = "Ocultar saldo";
+            }
+            saldoVisivel = !saldoVisivel;
+        }
+    </script>
+
 </body>
 </html>

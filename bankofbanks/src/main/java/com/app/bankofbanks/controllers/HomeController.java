@@ -90,7 +90,7 @@ public class HomeController {
             var user = usuariosServices.getUserFromCookie(request);
 
             model.addAttribute("user", user);
-
+            
             return "dashboard";
     }
     
