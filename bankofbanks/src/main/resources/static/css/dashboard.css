@@ -2,7 +2,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
 }
 
 .navbar {
@@ -72,27 +76,45 @@
     display: none;
 }
 
-.saldo-container {
-    background-color: #2DCB76; /* Verde PicPay */
-    color: white;
+/* Container geral */
+
+.container {
     padding: 20px;
-    border-radius: 10px;
+    background-color: #f5f5f5; /* Fundo cinza claro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Caixa do saldo */
+.saldo-container {
+    background-color: #000000; /* Roxo Nubank */
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+    width: 80vh;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+
+/* Centralizar conteúdo interno */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    width: 300px;
-    margin: 50px auto;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Texto do saldo */
 .saldo-label {
-    font-size: 16px;
-    opacity: 0.8;
+    font-size: 18px;
+    font-weight: 400;
+    opacity: 0.9;
 }
 
 .saldo-valor {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 10px 0;
+    font-size: 32px;
+    font-weight: 600;
+    margin: 15px 0;
+    transition: 0.3s ease-in-out;
 }
 
 /* Botão de esconder/exibir saldo */
@@ -102,5 +124,12 @@
     color: white;
     cursor: pointer;
     font-size: 16px;
+    font-weight: 400;
     text-decoration: underline;
+    transition: 0.3s;
 }
+
+.toggle-saldo:hover {
+    opacity: 0.7;
+}
+

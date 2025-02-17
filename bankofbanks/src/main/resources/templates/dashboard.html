@@ -3,8 +3,11 @@
 <head>
     <link rel="stylesheet" th:href="@{/css/dashboard.css}"/>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dashboard</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <nav class="navbar">
@@ -16,11 +19,37 @@
         <div class="menu-icon">☰</div>
     </nav>
 
-    <div class="saldo-container">
-        <p class="saldo-label">Seu saldo</p>
-        <p class="saldo-valor" id="saldo">R$ ••••</p>
-        <button class="toggle-saldo" onclick="toggleSaldo()">Mostrar saldo</button>
+
+    <div class="container">
+        <div class="saldo-container">
+            <p class="saldo-label">Seu saldo</p>
+            <p class="saldo-valor" id="saldo">R$ ••••</p>
+            <button class="toggle-saldo" onclick="toggleSaldo()">Mostrar saldo</button>
+        </div>
     </div>
+
+    <nav>
+        <ul class="nav-links">
+            <li>
+                <img th:src="@{/images/paycheck.png}" alt="">
+                <a href="/depositar">Depositar</a>
+            </li>
+            <li>
+                <img th:src="@{/images/pngwing.com.png}" alt="">
+                <a href="/pix">pix</a>
+            </li>
+            <li>
+                <img th:src="@{/images/transparencia.png}" alt="">
+                <a href="/extrato">Extrato</a>
+            </li>
+            <li>
+                <a href="/receber">
+                    Receber
+                </a>
+            </li>
+        </ul>
+    </nav>
+
 
     <script>
         let saldoVisivel = false;
@@ -32,7 +61,7 @@
                 saldo.textContent = "R$ ••••";
                 botao.textContent = "Mostrar saldo";
             } else {
-                saldo.textContent = "${user.balance}"; // Aqui pode ser um valor dinâmico vindo do backend
+                saldo.textContent = "R$" + saldo.dataset.valor; // Aqui pode ser um valor dinâmico vindo do backend
                 botao.textContent = "Ocultar saldo";
             }
             saldoVisivel = !saldoVisivel;
