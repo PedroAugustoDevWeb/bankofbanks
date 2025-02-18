@@ -13,39 +13,50 @@
     <nav class="navbar">
         <a href="#" class="logo">BANK OF BANKS</a>
 
-        <a href="#" class="login-btn"> Olá. <span th:text="${user.primeiro_nome}">?</span></a>
-
-        <!-- Ícone do menu (Mobile) -->
-        <div class="menu-icon">☰</div>
+        <a href="#" class="login-btn" onclick="abrirMenu()"> 
+            Olá, <span th:text="${user.primeiro_nome}">?</span> 
+        </a>
     </nav>
+
+    <!-- Menu lateral (Mobile) -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-btn" onclick="fecharMenu()">✖</div>
+        <a href="/deleteUserCookie">Sair</a>
+    </div>
+
+    <script>
+        function abrirMenu() {
+            document.getElementById("mobileMenu").style.right = "0";
+        }
+
+        function fecharMenu() {
+            document.getElementById("mobileMenu").style.right = "-250px";
+        }
+    </script>
+
 
 
     <div class="container">
         <div class="saldo-container">
             <p class="saldo-label">Seu saldo</p>
-            <p class="saldo-valor" id="saldo">R$ ••••</p>
+            <p id="saldo" class="saldo-valor" th:data-valor="${balence}"  data-valor="${balence}" >R$ ••••</p>
             <button class="toggle-saldo" onclick="toggleSaldo()">Mostrar saldo</button>
         </div>
     </div>
 
-    <nav>
+    <nav class="sidebar">
         <ul class="nav-links">
             <li>
                 <img th:src="@{/images/paycheck.png}" alt="">
-                <a href="/depositar">Depositar</a>
+                <p class="text-item"><a href="/deposito">Depositar</a></p>
             </li>
             <li>
                 <img th:src="@{/images/pngwing.com.png}" alt="">
-                <a href="/pix">pix</a>
+                <p class="text-item"><a href="/pix">pix</a></p>
             </li>
             <li>
-                <img th:src="@{/images/transparencia.png}" alt="">
-                <a href="/extrato">Extrato</a>
-            </li>
-            <li>
-                <a href="/receber">
-                    Receber
-                </a>
+                <img th:src="@{/images/3742514.png}" alt="">
+                <p class="text-item"><a href="/extrato">Extrato</a></p>
             </li>
         </ul>
     </nav>

@@ -1,0 +1,84 @@
+/* Reset e base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #000000; /* Cor roxa do Nubank */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    color: #333;
+    border-radius: 10px;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.saldo {
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #000000;
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.form-group button {
+    width: 100%;
+    padding: 15px;
+    background-color: #000000;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-group button:hover {
+    background-color: rgba(0, 0, 0, 0.856);
+}
+
+
+.footer {
+    text-align: center;
+    font-size: 0.9em;
+    color: #ddd;
+    margin-top: 40px;
+}

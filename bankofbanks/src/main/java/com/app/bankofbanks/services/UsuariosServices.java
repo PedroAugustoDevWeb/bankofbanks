@@ -113,6 +113,15 @@ public class UsuariosServices {
                 return null;   
             }
 
+        public void deleteUserCookie(HttpServletResponse request, String name_cookie) {
+
+            Cookie cookie = new Cookie(name_cookie, null);
+
+            cookie.setMaxAge(0);
+    
+            request.addCookie(cookie);
+        }
+
 
 }
 

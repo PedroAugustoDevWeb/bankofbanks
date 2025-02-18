@@ -18,84 +18,114 @@ import jakarta.servlet.http.HttpServletResponse;
 @Controller
 public class HomeController {
 
-        @Autowired
-        private UsuariosServices usuariosServices;
+    @Autowired
+    private UsuariosServices usuariosServices;
+
+    @GetMapping("/") 
+    public String index(HttpServletRequest request) {
+
+        if (usuariosServices.existLogin(request) == true) {
+
+            usuariosServices.getUserFromCookie(request);
+
+            return "redirect:/dashboard";
+
+        } else {
+
+            return "redirect:/login";
+
+        }
+    }
+
+    @GetMapping("/cadastro")
+    public String cadastro() {
+
+        return "cadastro";
+    }
+
+    @PostMapping("/cadastro")
+    public String methodPostCadastro(@ModelAttribute  UsuarioDTO  usuario) {
+
+        try {
+
+            usuariosServices.criarUser(usuario);
+
+            return "redirect:/login";
+
+        } catch (Exception e) {
+
+            System.out.println(e.getMessage());
+
+            return "redirect:/cadastro";
+        }
+
+        }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String methodPostLongin(@ModelAttribute  UsuarioDTO  usuario, HttpServletResponse request) {
+
+        try {
+
+            usuariosServices.login(usuario, request);
+
+            return "redirect:/";
+
+        } catch (Exception e) {
+
+            System.out.println(e.getMessage());
+
+            return "login";
+        }
+
+    }
+        
+    @GetMapping("/dashboard")
+    public String dashboard(HttpServletRequest request, Model model) {
+
+        var user = usuariosServices.getUserFromCookie(request);
+
+        model.addAttribute("user", user);
+
+        model.addAttribute("balence", user.getBalence());
+        
+        return "dashboard";
+}
+
+    @GetMapping("/deleteUserCookie")
+    public String deleteUserCookie(HttpServletResponse request) {
     
-        @GetMapping("/") 
-        public String index(HttpServletRequest request) {
+        usuariosServices.deleteUserCookie(request, "id");
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/deposito")
+    public String deposito(HttpServletRequest request, Model model) {
+
+    if (usuariosServices.existLogin(request) == true) {
     
-            if (usuariosServices.existLogin(request) == true) {
+                var user = usuariosServices.getUserFromCookie(request);
+
+                model.addAttribute("balence", user.getBalence());
     
-                usuariosServices.getUserFromCookie(request);
-    
-                return "redirect:/dashboard";
+                return "deposito";
     
             } else {
     
                 return "redirect:/login";
     
-            }
+            }    
         }
-    
-        @GetMapping("/cadastro")
-        public String cadastro() {
-    
-            return "cadastro";
-        }
-    
-        @PostMapping("/cadastro")
-        public String methodPostCadastro(@ModelAttribute  UsuarioDTO  usuario) {
-    
-            try {
-    
-                usuariosServices.criarUser(usuario);
-    
-                return "redirect:/login";
-    
-            } catch (Exception e) {
-    
-                System.out.println(e.getMessage());
-    
-                return "redirect:/cadastro";
-            }
-    
-            }
-    
-        @GetMapping("/login")
-        public String login() {
-            return "login";
-        }
-    
-        @PostMapping("/login")
-        public String methodPostLongin(@ModelAttribute  UsuarioDTO  usuario, HttpServletResponse request) {
-    
-            try {
-    
-                usuariosServices.login(usuario, request);
-    
-                return "redirect:/home";
-    
-            } catch (Exception e) {
-    
-                System.out.println(e.getMessage());
-    
-                return "login";
-            }
-    
-        }
-        
-        @GetMapping("/dashboard")
-        public String dashboard(HttpServletRequest request, Model model) {
-    
-            var user = usuariosServices.getUserFromCookie(request);
 
-            model.addAttribute("user", user);
+    @PostMapping("/deposito")
+    public String postDeposito() {
 
-            model.addAttribute("balence", user.getBalence());
-            
-            return "dashboard";
+        return "redirect:/";
     }
-    
-    
     
 }
